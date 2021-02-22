@@ -2,7 +2,7 @@
   "rules": [
     {
       "enabled": true,
-      "name": "move-to-cool",
+      "name": "move-tiers",
       "type": "Lifecycle",
       "definition": {
         "actions": {
