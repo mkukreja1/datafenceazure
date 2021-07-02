@@ -1,0 +1,146 @@
+trigger:
+# - master
+- dev
+
+
+variables:
+  - group: 'Datafence_DevOps'
+
+stages:
+  - stage: KeyVault
+    jobs: 
+      - job: DeployKeyVault
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
+            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(DF_RESOURCE_GROUP)'
+            location: '$(DF_REGION)'
+            templateLocation: 'Linked artifact'
+            csmFile: 'keyvault.json'
+            overrideParameters: '-secretValue $(DF_KEYVAULT_SECRET) -name $(DF_KEYVAULT_NAME)'
+            deploymentMode: 'Incremental'
+            deploymentName: 'keyvault'
+
+  - stage: SQL
+    jobs: 
+      - job: DeployAzureSQL
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
+            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(DF_RESOURCE_GROUP)'
+            location: '$(DF_REGION)'
+            templateLocation: 'Linked artifact'
+            csmFile: 'sql.json'
+            overrideParameters: '-sqlAdministratorLoginPassword $(DF_SQL_PASSWORD)'
+            deploymentMode: 'Incremental'
+            deploymentName: 'sql'  
+
+  - stage: EventGridHub
+    jobs: 
+      - job: DeployEventGridandHub
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
+            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(DF_RESOURCE_GROUP)'
+            location: '$(DF_REGION)'
+            templateLocation: 'Linked artifact'
+            csmFile: 'eventgridhub.json'
+            deploymentMode: 'Incremental'
+            deploymentName: 'eventgridhub'
+
+  - stage: StorageAccount
+    jobs: 
+      - job: DeployStorageAccount
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
+            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(DF_RESOURCE_GROUP)'
+            location: '$(DF_REGION)'
+            templateLocation: 'Linked artifact'
+            csmFile: 'storage_accounts.json'
+            deploymentMode: 'Incremental'
+            deploymentName: 'storage_accounts'
+
+  - stage: Databricks
+    jobs: 
+      - job: DeployDatabricksWorkspace
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
+            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(DF_RESOURCE_GROUP)'
+            location: '$(DF_REGION)'
+            templateLocation: 'Linked artifact'
+            csmFile: 'databricks.json'
+            deploymentMode: 'Incremental'
+            deploymentName: 'databricks'
+
+
+  - stage: Synapse
+    jobs: 
+      - job: DeploySynapse
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
+            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(DF_RESOURCE_GROUP)'
+            location: '$(DF_REGION)'
+            templateLocation: 'Linked artifact'
+            csmFile: 'synapse.json'
+            overrideParameters: '-synapseAdministratorLoginPassword $(DF_SYNAPSE_PASSWORD)'
+            deploymentMode: 'Incremental'
+            deploymentName: 'synapse'
+
+
+  - stage: DataFactory
+    jobs: 
+      - job: DeployDataFactory
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
+            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(DF_RESOURCE_GROUP)'
+            location: '$(DF_REGION)'
+            templateLocation: 'Linked artifact'
+            csmFile: 'data_factory.json'
+            deploymentMode: 'Incremental'
+            deploymentName: 'dataFactoryDeployment'

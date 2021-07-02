@@ -1,0 +1,66 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string",
+            "defaultValue": "trainkv"
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]"
+        },
+        "tenantId": {
+            "type": "string",
+            "defaultValue": "[subscription().tenantId]"
+        },
+        "objectId": {
+            "type": "string",
+            "defaultValue": "9f14339a-cdf5-41e3-b43e-30a949b42dda"
+        },
+        "secretValue": {
+            "type": "string"   
+        }
+    },
+    "variables": {
+        "kv_name": "[concat(parameters('name'), uniqueString(resourceGroup().id))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "apiVersion": "2019-09-01",
+            "name": "[variables('kv_name')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "sku": {
+                    "family": "A",
+                    "name": "Standard"
+                },
+                "tenantId": "[subscription().tenantId]",
+                "accessPolicies": [
+                    {
+                        "tenantId": "[subscription().tenantId]",
+                        "objectId": "[parameters('objectId')]",
+                        "permissions": {
+                            "keys": [ "All" ],
+                            "secrets": [ "All" ]
+                          }
+                    }
+                ]
+            },
+            "resources":[
+                {
+                  "name": "dfADLSKEY",
+                  "type": "secrets",
+                  "apiVersion": "2019-09-01",
+                  "properties": {
+                    "value": "[parameters('secretValue')]"
+                  },
+                  "dependsOn": [
+                    "[resourceId('Microsoft.KeyVault/vaults', variables('kv_name'))]"
+                  ]
+                }
+            ]
+        }
+    ]
+}
