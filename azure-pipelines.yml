@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo MAnoj!
+- script: echo Manoj!
   displayName: 'Run a one-line script'
 
 - script: |
