@@ -4,13 +4,13 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- azure-pipelines
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
+- script: echo MAnoj!
   displayName: 'Run a one-line script'
 
 - script: |
