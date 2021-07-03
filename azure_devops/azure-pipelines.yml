@@ -143,6 +143,6 @@ stages:
             location: '$(DF_REGION)'
             templateLocation: 'Linked artifact'
             csmFile: 'azure_devops/data_factory.json'
-            # overrideParameters: '-SynapseServerless_connectionString $(DF_SYNAPSE_CON_STRING) -Curation_Spark_Cluster_accessToken $(DF_SPARK_CLUSTER_TOKEN) -salesdbsource_connectionString $(DF_SQL_CON_STRING) -websitetrackinglogs_connectionString $(DF_WEBSITE_LOGS_CON_STRING)'
+            overrideParameters: '-SynapseServerless_connectionString $(DF_SYNAPSE_CON_STRING) -Curation_Spark_Cluster_accessToken $(DF_SPARK_CLUSTER_TOKEN) -salesdbsource_connectionString $(DF_SQL_CON_STRING) -websitetrackinglogs_connectionString $(DF_WEBSITE_LOGS_CON_STRING)'
             deploymentMode: 'Incremental'
             deploymentName: 'dataFactoryDeployment'
