@@ -39,32 +39,23 @@
         },
         "SynapseServerless_connectionString": {
             "type": "secureString",
-            "metadata": "Secure string for 'connectionString' of 'Synapse Serverless'",
-            "defaultValue": "Server=tcp:dfsalesdb100.database.windows.net,1433;Initial Catalog=dfsalesdb;Persist Security Info=False;User ID=dfsalesadmin;Password=Demo1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+            "metadata": "Secure string for 'connectionString' of 'Synapse Serverless'"
         },
         "traininglakehouse_properties_typeProperties_url": {
             "type": "string",
             "defaultValue": "https://dftraininglakehouse.dfs.core.windows.net"
         },
-        "Curation Spark Cluster_accessToken": {
+        "Curation_Spark_Cluster_accessToken": {
             "type": "secureString",
-            "metadata": "Secure string for 'accessToken' of 'Curation Spark Cluster'",
-            "defaultValue": "12345678"
+            "metadata": "Secure string for 'accessToken' of 'Curation Spark Cluster'"
         },
         "salesdbsource_connectionString": {
             "type": "secureString",
-            "metadata": "Secure string for 'connectionString' of 'salesdbsource'",
-            "defaultValue": "Server=tcp:dfsalesdb100.database.windows.net,1433;Initial Catalog=dfsalesdb;Persist Security Info=False;User ID=dfsalesadmin;Password=Demo1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-        },
-        "traininglakehouse_accountKey": {
-            "type": "secureString",
-            "metadata": "Secure string for 'accountKey' of 'traininglakehouse'",
-            "defaultValue": "abc1234"
+            "metadata": "Secure string for 'connectionString' of 'salesdbsource'"
         },
         "websitetrackinglogs_connectionString": {
             "type": "secureString",
-            "metadata": "Secure string for 'connectionString' of 'websitetrackinglogs'",
-            "defaultValue": "nw+jaUKqF2EhA93P4fRW9i5WUFT0u37/gee6K+oWf5lR8WUAw6itX/B9yEjJRmGs0scwdONfafbzm15DGB5y2Q=="
+            "metadata": "Secure string for 'connectionString' of 'websitetrackinglogs'"
         },
         "traininglakehouse_properties_typeProperties_url": {
             "type": "string",
@@ -524,7 +515,7 @@
                     "domain": "https://adb-7285613526976736.16.azuredatabricks.net",
                     "accessToken": {
                         "type": "SecureString",
-                        "value": "[parameters('Curation Spark Cluster_accessToken')]"
+                        "value": "[parameters('Curation_Spark_Cluster_accessToken')]"
                     },
                     "existingClusterId": "<DataBricksclusterID>"
                 }
