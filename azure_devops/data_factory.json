@@ -41,10 +41,6 @@
             "type": "secureString",
             "metadata": "Secure string for 'connectionString' of 'Synapse Serverless'"
         },
-        "traininglakehouse_properties_typeProperties_url": {
-            "type": "string",
-            "defaultValue": "https://dftraininglakehouse.dfs.core.windows.net"
-        },
         "Curation_Spark_Cluster_accessToken": {
             "type": "secureString",
             "metadata": "Secure string for 'accessToken' of 'Curation Spark Cluster'"
