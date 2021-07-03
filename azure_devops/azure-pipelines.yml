@@ -67,24 +67,24 @@ stages:
   #           deploymentMode: 'Incremental'
   #           deploymentName: 'eventgridhub'
 
-  # - stage: StorageAccount
-  #   jobs: 
-  #     - job: DeployStorageAccount
-  #       pool:
-  #         vmImage: ubuntu-latest
-  #       steps:
-  #       - task: AzureResourceManagerTemplateDeployment@3
-  #         inputs:
-  #           deploymentScope: 'Resource Group'
-  #           azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
-  #           subscriptionId: '$(DF_SUBSCRIPTION_ID)'
-  #           action: 'Create Or Update Resource Group'
-  #           resourceGroupName: '$(DF_RESOURCE_GROUP)'
-  #           location: '$(DF_REGION)'
-  #           templateLocation: 'Linked artifact'
-  #           csmFile: 'storage_accounts.json'
-  #           deploymentMode: 'Incremental'
-  #           deploymentName: 'storage_accounts'
+  - stage: StorageAccount
+    jobs: 
+      - job: DeployStorageAccount
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
+            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(DF_RESOURCE_GROUP)'
+            location: '$(DF_REGION)'
+            templateLocation: 'Linked artifact'
+            csmFile: 'storage_accounts.json'
+            deploymentMode: 'Incremental'
+            deploymentName: 'storage_accounts'
 
   # - stage: Databricks
   #   jobs: 
