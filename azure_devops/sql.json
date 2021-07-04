@@ -4,7 +4,7 @@
   "parameters": {
     "sqlAdministratorLogin": {
       "type": "string",
-      "defaultValue": "dfsalesadmin1",
+      "defaultValue": "dfsalesadmin2",
       "metadata": {
         "description": "The administrator username of the SQL Server."
       }
