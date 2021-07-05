@@ -77,6 +77,9 @@
             "apiVersion": "2018-06-01",
             "location": "[parameters('location')]",
             "properties": {},
+			"identity": {
+            "type": "SystemAssigned"
+             },
             "resources": []
         },
         {
@@ -1205,7 +1208,7 @@
                 "typeProperties": {
                     "location": {
                         "type": "AzureBlobStorageLocation",
-                        "container": "df-ecommercelogs-1234"
+                        "container": "ecommercelogs1234"
                     }
                 },
                 "schema": {}

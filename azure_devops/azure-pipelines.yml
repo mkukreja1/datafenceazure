@@ -23,7 +23,7 @@ stages:
             location: '$(DF_REGION)'
             templateLocation: 'Linked artifact'
             csmFile: 'azure_devops/keyvault.json'
-            overrideParameters: '-secretValue $(DF_KEYVAULT_SECRET) -name $(DF_KEYVAULT_NAME)'
+            overrideParameters: '-secretValue $(DF_KEYVAULT_SECRET) -secretsasValue $(DF_KEYVAULT_SECRET) -name $(DF_KEYVAULT_NAME) -apisecretValue $(CURRENCY_API_KEY)'
             deploymentMode: 'Incremental'
             deploymentName: 'keyvault'
 
