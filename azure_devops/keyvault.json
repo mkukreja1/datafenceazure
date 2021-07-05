@@ -4,7 +4,7 @@
     "parameters": {
         "name": {
             "type": "string",
-            "defaultValue": "trainkv561116"
+            "defaultValue": "trainkv"
         },
         "location": {
             "type": "string",
