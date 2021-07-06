@@ -85,45 +85,45 @@ stages:
             deploymentMode: 'Incremental'
             deploymentName: 'storage_accounts'
 
-  - stage: Databricks
-    jobs: 
-      - job: DeployDatabricksWorkspace
-        pool:
-          vmImage: ubuntu-latest
-        steps:
-        - task: AzureResourceManagerTemplateDeployment@3
-          inputs:
-            deploymentScope: 'Resource Group'
-            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
-            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
-            action: 'Create Or Update Resource Group'
-            resourceGroupName: '$(DF_RESOURCE_GROUP)'
-            location: '$(DF_REGION)'
-            templateLocation: 'Linked artifact'
-            csmFile: 'azure_devops/databricks.json'
-            deploymentMode: 'Incremental'
-            deploymentName: 'databricks'
+#  - stage: Databricks
+#    jobs: 
+#      - job: DeployDatabricksWorkspace
+#        pool:
+#          vmImage: ubuntu-latest
+#        steps:
+#        - task: AzureResourceManagerTemplateDeployment@3
+#          inputs:
+#            deploymentScope: 'Resource Group'
+#            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
+#            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
+#            action: 'Create Or Update Resource Group'
+#            resourceGroupName: '$(DF_RESOURCE_GROUP)'
+#            location: '$(DF_REGION)'
+#            templateLocation: 'Linked artifact'
+#            csmFile: 'azure_devops/databricks.json'
+#            deploymentMode: 'Incremental'
+#            deploymentName: 'databricks'
 
 
-  - stage: Synapse
-    jobs: 
-      - job: DeploySynapse
-        pool:
-          vmImage: ubuntu-latest
-        steps:
-        - task: AzureResourceManagerTemplateDeployment@3
-          inputs:
-            deploymentScope: 'Resource Group'
-            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
-            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
-            action: 'Create Or Update Resource Group'
-            resourceGroupName: '$(DF_RESOURCE_GROUP)'
-            location: '$(DF_REGION)'
-            templateLocation: 'Linked artifact'
-            csmFile: 'azure_devops/synapse.json'
-            overrideParameters: '-synapseAdministratorLoginPassword $(DF_SYNAPSE_PASSWORD)'
-            deploymentMode: 'Incremental'
-            deploymentName: 'synapse'
+#  - stage: Synapse
+#    jobs: 
+#      - job: DeploySynapse
+#        pool:
+#          vmImage: ubuntu-latest
+#        steps:
+#        - task: AzureResourceManagerTemplateDeployment@3
+#          inputs:
+#            deploymentScope: 'Resource Group'
+#            azureResourceManagerConnection: '$(DF_SERVICE_CONNECTION)'
+#            subscriptionId: '$(DF_SUBSCRIPTION_ID)'
+#            action: 'Create Or Update Resource Group'
+#            resourceGroupName: '$(DF_RESOURCE_GROUP)'
+#            location: '$(DF_REGION)'
+#            templateLocation: 'Linked artifact'
+#            csmFile: 'azure_devops/synapse.json'
+#            overrideParameters: '-synapseAdministratorLoginPassword $(DF_SYNAPSE_PASSWORD)'
+#            deploymentMode: 'Incremental'
+#            deploymentName: 'synapse'
 
 
   - stage: DataFactory

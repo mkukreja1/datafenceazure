@@ -529,7 +529,36 @@
             "apiVersion": "2018-06-01",
             "properties": {
                 "description": "This pipeline will ingest data from sales database, currency conversion, geo-location and ecommerce website tracking",
-                "activities": [{
+                "activities": [
+				     {
+						  "name":"Get Secret",
+						  "type":"WebActivity",
+						  "dependsOn":[
+							 
+						  ],
+						  "policy":{
+							 "timeout":"7.00:00:00",
+							 "retry":0,
+							 "retryIntervalInSeconds":30,
+							 "secureOutput":false,
+							 "secureInput":false
+						  },
+						  "userProperties":[
+							 
+						  ],
+						  "typeProperties":{
+							 "url":"https://train7kvea444t6elpjao.vault.azure.net/secrets/dfCURRAPIKEY/960822efbfc949feb68a0d4c4fba87ea?api-version=7.0",
+							 "method":"GET",
+							 "headers":{
+								
+							 },
+							 "authentication":{
+								"type":"MSI",
+								"resource":"https://vault.azure.net"
+							 }
+						  }
+					   },
+				    {
                         "name": "Find SalesDB Tables",
                         "type": "Lookup",
                         "dependsOn": [{
@@ -732,7 +761,14 @@
                     {
                         "name": "Get Geo-location Mapping",
                         "type": "Copy",
-                        "dependsOn": [],
+                        "dependsOn": [	
+						 {
+							"activity":"Get Secret",
+							"dependencyConditions":[
+							   "Succeeded"
+							]
+						 }
+						],
                         "policy": {
                             "timeout": "7.00:00:00",
                             "retry": 0,
@@ -1144,7 +1180,7 @@
                 "annotations": [],
                 "type": "RestResource",
                 "typeProperties": {
-                    "relativeUrl": "convert?q=USD_@{item().Currency}&compact=ultra&apiKey=6f9457cf12749571ad40"
+                    "relativeUrl": "convert?q=USD_@{item().Currency}&compact=ultra&apiKey==@{activity('Get Secret').output.value}"
                 },
                 "schema": []
             },
