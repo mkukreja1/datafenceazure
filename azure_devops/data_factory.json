@@ -1180,7 +1180,7 @@
                 "annotations": [],
                 "type": "RestResource",
                 "typeProperties": {
-                    "relativeUrl": "convert?q=USD_@{item().Currency}&compact=ultra&apiKey==@{activity('Get Secret').output.value}"
+                    "relativeUrl": "convert?q=USD_@{item().Currency}&compact=ultra&apiKey=@{activity('Get Secret').output.value}"
                 },
                 "schema": []
             },
