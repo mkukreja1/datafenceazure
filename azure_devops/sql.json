@@ -4,7 +4,6 @@
   "parameters": {
     "sqlAdministratorLogin": {
       "type": "string",
-      "defaultValue": "dfsalesadmin3",
       "metadata": {
         "description": "The administrator username of the SQL Server."
       }
@@ -21,18 +20,22 @@
       "metadata": {
         "description": "Location for all resources."
       }
+    },
+	"sqlServerName": {
+            "type": "string"   
+    },
+	"databaseName": {
+            "type": "string"   
     }
   },
   "variables": {
-    "sqlServerName": "dfsalesdb100",
-    "databaseName": "dfsalesdb",
     "databaseEdition": "Basic",
     "databaseCollation": "SQL_Latin1_General_CP1_CI_AS",
     "databaseServiceObjectiveName": "Basic"
   },
   "resources": [
     {
-      "name": "[variables('sqlServerName')]",
+      "name": "[parameters('sqlServerName')]",
       "type": "Microsoft.Sql/servers",
       "apiVersion": "2020-02-02-preview",
       "location": "[parameters('location')]",
@@ -47,7 +50,7 @@
       },
       "resources": [
         {
-          "name": "[variables('databaseName')]",
+          "name": "[parameters('databaseName')]",
           "type": "databases",
           "apiVersion": "2020-02-02-preview",
           "location": "[parameters('location')]",
