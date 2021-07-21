@@ -7,7 +7,7 @@ variables:
   - group: 'Datafence_DevOps'
 
 stages:
-  - stage: KeyVault
+  - stage: KeyVaults
     jobs: 
       - job: DeployKeyVault
         pool:
