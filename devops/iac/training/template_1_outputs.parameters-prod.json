@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "p_storageAccountPrefix": {
+      "value": "dfstoragepa"
+    },
+    "p_location": {
+      "value": "Central US"
+    },
+    "p_skuType": {
+      "value": "Standard_LRS"
+    },
+    "p_storageAccountType": {
+      "value": "StorageV2"
+    },
+    "p_httpsTrafficSupport": {
+      "value": true
+    }
+  }
+}
