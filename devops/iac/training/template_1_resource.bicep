@@ -1,5 +1,5 @@
 resource rDFStorageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
-  name: 'dfstorageaccount12345678'
+  name: 'dfstoragesyed'
   location: 'EAST US'
   tags: {
     Name: 'dfstorageaccount12345678'
