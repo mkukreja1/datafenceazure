@@ -2,7 +2,7 @@
 @minLength(3)
 @maxLength(24)
 @description('Name of Storage Account')
-param p_storageAccountName string = 'dfstorageaccount12345678'
+param p_storageAccountName string = 'dfstoragesyed'
 
 @description('Location to deploy resource in')
 param p_location string

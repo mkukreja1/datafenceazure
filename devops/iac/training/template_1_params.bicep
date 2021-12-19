@@ -1,7 +1,7 @@
-param p_storageAccountName string = 'dfstorageaccount12345678'
+param p_storageAccountName string = 'dfstoragesyed'
 param p_location string = 'EAST US'
 param p_tags object = {
-  Name: 'dfstorageaccount12345678'
+  Name: 'dfstoragesyed'
   Environment: 'Datafence-Training'
   ManagedBy: 'Bicep Template - Parameterized'
 }
