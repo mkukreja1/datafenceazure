@@ -22,7 +22,7 @@ services:
       - "8081:80"
     volumes:
       - type: bind
-        source: /home/ec2-user/volume_content
+        source: /home/azureuser/volume_content
         target: /usr/share/nginx/html
 
 volumes:
