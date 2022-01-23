@@ -1,12 +1,12 @@
 {
    "environment":{
-      "value":"prod"
+      "value":"cicd"
    },
    "project":{
-      "value":"dlake"
+      "value":"df"
    },
    "storageAccountName":{
-      "value":"elz"
+      "value":"bicep"
    },
    "bronzeLayer":{
       "value":"bronze"
