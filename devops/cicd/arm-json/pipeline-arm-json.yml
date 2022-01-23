@@ -1,11 +1,11 @@
 trigger:
   branches:
     include:
-    - main
-    - project/infra/*
+    - devops-azure
+    #- project/infra/*
   paths:
     include:
-    - project/infra/*
+    - devops/cicd/arm-json/*
 
 variables:
   - group: 'electroniz_infra_variables'
@@ -27,7 +27,7 @@ stages:
             resourceGroupName: '$(RESOURCE_GROUP)'
             location: '$(REGION)'
             templateLocation: 'Linked artifact'
-            csmFile: 'project/infra/azure_sql/azure_sql.json'
+            csmFile: 'devops/cicd/arm-json/azure_sql/azure_sql.json'
             overrideParameters: '-vaultName $(KEY_VAULT_NAME) -databaseName $(SQL_DB_NAME) -adminPasswordsecretName $(SQL_PASSWORD_SECRET) -sqlServerName $(SQL_SERVERNAME) -adminLoginUsersecretName $(SQL_USERNAME_SECRET) -vaultResourceGroupName $(KEY_VAULT_RESOURCE_GROUP)'
             deploymentMode: 'Incremental'
             deploymentName: 'sql'  
@@ -47,7 +47,7 @@ stages:
             resourceGroupName: '$(RESOURCE_GROUP)'
             location: '$(REGION)'
             templateLocation: 'Linked artifact'
-            csmFile: 'project/infra/storage_accounts/storage_accounts.json'
+            csmFile: 'devops/cicd/arm-json/storage_accounts.json'
             overrideParameters: '-project $(PROJECT) -environment $(ENVIRONMENT)  -storageAccountName $(LAKEHOUSE_STORAGE_ACCOUNT) -bronzeLayer $(LAKEHOUSE_BRONZE_LAYER) -silverLayer $(LAKEHOUSE_SILVER_LAYER) -goldLayer $(LAKEHOUSE_GOLD_LAYER)'
             deploymentMode: 'Incremental'
             deploymentName: 'storage_accounts'
@@ -67,7 +67,7 @@ stages:
             resourceGroupName: '$(RESOURCE_GROUP)'
             location: '$(REGION)'
             templateLocation: 'Linked artifact'
-            csmFile: 'project/infra/event_hubs/event_hub.json'
+            csmFile: 'devops/cicd/arm-json/event_hub.json'
             overrideParameters: '-project $(PROJECT) -environment $(ENVIRONMENT)  -topicName $(EVENTHUB_TOPIC_NAME) -eventHubNamespace $(EVENTHUB_NAMESPACE) -eventHubName $(EVENTHUB_NAME) -storageAccountName $(EVENTHUB_STORAGE_ACCOUNT) -storageAccountContainerName $(EVENTHUB_CONTAINER) -subscriptionName $(EVENTHUB_SUBSCRIPTION)'
             deploymentMode: 'Incremental'
             deploymentName: 'eventgridhub'
@@ -87,7 +87,7 @@ stages:
             resourceGroupName: '$(RESOURCE_GROUP)'
             location: '$(REGION)'
             templateLocation: 'Linked artifact'
-            csmFile: 'project/infra/databricks/databricks.json'
+            csmFile: 'devops/cicd/arm-json/databricks.json'
             overrideParameters: '-project $(PROJECT) -environment $(ENVIRONMENT) -databricksWorkspaceName $(DATABRICKS_WORKSPACE_NAME)'
             deploymentMode: 'Incremental'
             deploymentName: 'databricks'
@@ -107,7 +107,7 @@ stages:
             resourceGroupName: '$(RESOURCE_GROUP)'
             location: '$(REGION)'
             templateLocation: 'Linked artifact'
-            csmFile: 'project/infra/data_factory/data_factory.json'
+            csmFile: 'devops/cicd/arm-json/data_factory.json'
             overrideParameters: '-project $(PROJECT) -environment $(ENVIRONMENT) -factoryName $(DATAFACTORY_NAME)'
             deploymentMode: 'Incremental'
             deploymentName: 'dataFactoryDeployment'           
@@ -127,7 +127,7 @@ stages:
             resourceGroupName: '$(RESOURCE_GROUP)'
             location: '$(REGION)'
             templateLocation: 'Linked artifact'
-            csmFile: 'project/infra/synapse/synapse.json'
+            csmFile: 'devops/cicd/arm-json/synapse.json'
             overrideParameters: '-vaultName $(KEY_VAULT_NAME)  -synapseWorkspaceName $(SYNAPSE_WORKSPACE_NAME) -synapseStorageAccount $(LAKEHOUSE_STORAGE_ACCOUNT) -synapseStorageAccountFilesystem $(SYNAPSE_CONTAINER) -adminPasswordsecretName $(SQL_PASSWORD_SECRET) -adminLoginUsersecretName $(SQL_USERNAME_SECRET) -vaultResourceGroupName $(KEY_VAULT_RESOURCE_GROUP)'
             deploymentMode: 'Incremental'
             deploymentName: 'synapse'
