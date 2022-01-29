@@ -127,25 +127,25 @@ stages:
           displayName: Run Sqlcmd
           inputs:
             filename: sqlcmd
-            arguments: '-S $(SYNAPSE_CON_STRING) -U $(SQLUSER) -P $(SQLPASSWORD) -i sql/create_db.sql'
+            arguments: '-S $(SYNAPSE_CON_STRING) -U $(SQLUSER) -P $(SQLPASSWORD) -i devops/cicd-code/sql/create_db.sql'
         - task: CmdLine@1
           displayName: Run Sqlcmd
           inputs:
             filename: sqlcmd
-            arguments: '-S $(SYNAPSE_CON_STRING) -U $(SQLUSER) -P $(SQLPASSWORD) -i sql/create_synapse_creds.sql'
+            arguments: '-S $(SYNAPSE_CON_STRING) -U $(SQLUSER) -P $(SQLPASSWORD) -i devops/cicd-code/sql/create_synapse_creds.sql'
         - task: CmdLine@1
           displayName: Run Sqlcmd
           inputs:
             filename: sqlcmd
-            arguments: '-S $(SYNAPSE_CON_STRING) -U $(SQLUSER) -P $(SQLPASSWORD) -i sql/create_silver_views.sql'
+            arguments: '-S $(SYNAPSE_CON_STRING) -U $(SQLUSER) -P $(SQLPASSWORD) -i devops/cicd-code/sql/create_silver_views.sql'
         - task: CmdLine@1
           displayName: Run Sqlcmd
           inputs:
             filename: sqlcmd
-            arguments: '-S $(SYNAPSE_CON_STRING) -U $(SQLUSER) -P $(SQLPASSWORD) -i sql/drop_gold_tables.sql'
+            arguments: '-S $(SYNAPSE_CON_STRING) -U $(SQLUSER) -P $(SQLPASSWORD) -i devops/cicd-code/sql/drop_gold_tables.sql'
         - task: CmdLine@1
           displayName: Run Sqlcmd
           inputs:
             filename: sqlcmd
-            arguments: '-S $(SYNAPSE_CON_STRING) -U $(SQLUSER) -P $(SQLPASSWORD) -i sql/create_gold_tables.sql'
+            arguments: '-S $(SYNAPSE_CON_STRING) -U $(SQLUSER) -P $(SQLPASSWORD) -i devops/cicd-code/sql/create_gold_tables.sql'
           
