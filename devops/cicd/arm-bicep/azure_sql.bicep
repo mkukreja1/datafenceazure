@@ -25,7 +25,7 @@ param vaultSubscription string = subscription().subscriptionId
 
 resource secretMetadata 'Microsoft.KeyVault/vaults@2019-09-01' existing = {
   name: vaultName
-  scope: resourceGroup(vaultSubscription, vaultResourceGroupName )
+  //scope: resourceGroup(vaultSubscription, vaultResourceGroupName )
 }
 
 module dynamicSecret './azure_sql_module.bicep' = {
