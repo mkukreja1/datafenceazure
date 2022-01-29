@@ -10,6 +10,8 @@ trigger:
 variables:
   - group: 'df-cicd'
 
+# ARM Deployment Stages
+
 stages:  
 
   - stage: Lakehouse_Storage_Account
