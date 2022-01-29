@@ -70,19 +70,19 @@ stages:
   #           inlineScript: |
   #             az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/data_factory.bicep --parameters '@devops/cicd/arm-bicep/data_factory_parameters.json' environment=$(ENVIRONMENT) project=$(PROJECT) factoryName=$(DATAFACTORY_NAME)
     
-  # - stage: Databricks
-  #   jobs: 
-  #     - job: DeployDatabricks
-  #       pool:
-  #         vmImage: ubuntu-latest
-  #       steps:
-  #       - task: AzureCLI@2
-  #         inputs:
-  #           azureSubscription: '$(SERVICE_CONNECTION)'
-  #           scriptType: 'bash'
-  #           scriptLocation: 'inlineScript'
-  #           inlineScript: |
-  #             az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/data_factory.bicep --parameters '@devops/cicd/arm-bicep/data_factory_parameters.json' environment=$(ENVIRONMENT) project=$(PROJECT) databricksWorkspaceName=$(DATABRICKS_WORKSPACE_NAME)
+  - stage: Databricks
+    jobs: 
+      - job: DeployDatabricks
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+        - task: AzureCLI@2
+          inputs:
+            azureSubscription: '$(SERVICE_CONNECTION)'
+            scriptType: 'bash'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/databricks.bicep --parameters '@devops/cicd/arm-bicep/databricks_parameters.json' environment=$(ENVIRONMENT) project=$(PROJECT) databricksWorkspaceName=$(DATABRICKS_WORKSPACE_NAME)
 
 
   - stage: Synapse
