@@ -28,18 +28,17 @@ stages:
             inlineScript: |
               az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/storage_accounts.bicep --parameters '@devops/cicd/arm-bicep/storage_accounts_parameters.json' environment=$(ENVIRONMENT) project=$(PROJECT) storageAccountName=$(LAKEHOUSE_STORAGE_ACCOUNT) bronzeLayer=$(LAKEHOUSE_BRONZE_LAYER) silverLayer=$(LAKEHOUSE_SILVER_LAYER) goldLayer=$(LAKEHOUSE_GOLD_LAYER) location='$(REGION)'
            
-  # - stage: Azure_SQL_Database
-  #   jobs: 
-  #     - job: DeployAzureSQL
-  #       pool:
-  #         vmImage: ubuntu-latest
-  #       steps:
-  #       - task: AzureCLI@2
-  #         inputs:
-  #           azureSubscription: '$(SERVICE_CONNECTION)'
-  #           scriptType: 'bash'
-  #           scriptLocation: 'inlineScript'
-  #           inlineScript: |
-  #             az --version
-  #             az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/azure_sql.bicep --parameters '@devops/cicd/arm-bicep/azure_sql_parameters.json'
+  - stage: Azure_SQL_Database
+    jobs: 
+      - job: DeployAzureSQL
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+        - task: AzureCLI@2
+          inputs:
+            azureSubscription: '$(SERVICE_CONNECTION)'
+            scriptType: 'bash'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/azure_sql.bicep --parameters '@devops/cicd/arm-bicep/azure_sql_parameters.json' vaultName=$(KEY_VAULT_NAME) databaseName=$(SQL_DB_NAME) adminPasswordsecretName=$(SQL_PASSWORD_SECRET) sqlServerName=$(SQL_SERVERNAME) adminLoginUsersecretName=$(SQL_USERNAME_SECRET) vaultResourceGroupName=$(KEY_VAULT_RESOURCE_GROUP)
            
