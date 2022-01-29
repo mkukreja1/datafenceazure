@@ -1,6 +1,6 @@
 {
    "vaultName":{
-      "value":"deploykvelz"
+      "value":"deploykvsms"
    },
    "databaseName":{
       "value":"salesdb"
@@ -9,12 +9,12 @@
       "value":"SQLPASSWORD"
    },
     "sqlServerName":{
-      "value":"elzsql"
+      "value":"elzsmssh"
    },
     "adminLoginUsersecretName":{
       "value":"SQLUSER"
    },
     "vaultResourceGroupName":{
-      "value":"elz_prod"
+      "value":"asg-sol"
    }
 }

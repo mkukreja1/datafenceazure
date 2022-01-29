@@ -6,19 +6,19 @@
       "value":"dlake"
    },
    "topicName":{
-      "value":"esales"
+      "value":"esalessms"
    },
    "subscriptionName":{
       "value":"esalesevent"
    },
     "eventHubNamespace":{
-      "value":"esalesns"
+      "value":"esalesnssms"
    },
     "eventHubName":{
       "value":"esaleshub"
    },
     "storageAccountName":{
-      "value":"elzlogs"
+      "value":"elzlogssms"
    },
     "storageAccountContainerName":{
       "value":"ecommlogs"

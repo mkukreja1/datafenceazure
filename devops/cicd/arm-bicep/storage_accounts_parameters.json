@@ -3,10 +3,10 @@
       "value":"cicd"
    },
    "project":{
-      "value":"df"
+      "value":"dlake"
    },
    "storageAccountName":{
-      "value":"bicep"
+      "value":""
    },
    "bronzeLayer":{
       "value":"bronze"

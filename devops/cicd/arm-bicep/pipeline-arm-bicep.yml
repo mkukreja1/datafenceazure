@@ -22,10 +22,25 @@ stages:
         steps:
         - task: AzureCLI@2
           inputs:
-            azureSubscription: 'df-cicd-service-connection'
+            azureSubscription: '$(SERVICE_CONNECTION)'
             scriptType: 'bash'
             scriptLocation: 'inlineScript'
             inlineScript: |
               az --version
-              az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/storage_accounts.json --parameters '@devops/cicd/arm-bicep/storage_accounts_parameters.json'
+              az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/storage_accounts.json --parameters '@devops/cicd/arm-bicep/storage_accounts_parameters.json' storageAccountName='sms'
+           
+  # - stage: Stores_Azure_SQL_Database
+  #   jobs: 
+  #     - job: DeployAzureSQL
+  #       pool:
+  #         vmImage: ubuntu-latest
+  #       steps:
+  #       - task: AzureCLI@2
+  #         inputs:
+  #           azureSubscription: '$(SERVICE_CONNECTION)'
+  #           scriptType: 'bash'
+  #           scriptLocation: 'inlineScript'
+  #           inlineScript: |
+  #             az --version
+  #             az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/azure_sql.bicep --parameters '@devops/cicd/arm-bicep/azure_sql_parameters.json'
            
