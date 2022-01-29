@@ -26,10 +26,9 @@ stages:
             scriptType: 'bash'
             scriptLocation: 'inlineScript'
             inlineScript: |
-              az --version
-              az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/storage_accounts.bicep --parameters '@devops/cicd/arm-bicep/storage_accounts_parameters.json' storageAccountName='sms'
+              az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/storage_accounts.bicep --parameters '@devops/cicd/arm-bicep/storage_accounts_parameters.json' environment=$(ENVIRONMENT) project=$(PROJECT) storageAccountName=$(LAKEHOUSE_STORAGE_ACCOUNT) bronzeLayer=$(LAKEHOUSE_BRONZE_LAYER) silverLayer=$(LAKEHOUSE_SILVER_LAYER) goldLayer=$(LAKEHOUSE_GOLD_LAYER) location=$(REGION) 
            
-  # - stage: Stores_Azure_SQL_Database
+  # - stage: Azure_SQL_Database
   #   jobs: 
   #     - job: DeployAzureSQL
   #       pool:
