@@ -27,7 +27,7 @@ stages:
             scriptLocation: 'inlineScript'
             inlineScript: |
               az --version
-              az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/storage_accounts.json --parameters '@devops/cicd/arm-bicep/storage_accounts_parameters.json' storageAccountName='sms'
+              az deployment group create --resource-group $(RESOURCE_GROUP) --template-file devops/cicd/arm-bicep/storage_accounts.bicep --parameters '@devops/cicd/arm-bicep/storage_accounts_parameters.json' storageAccountName='sms'
            
   # - stage: Stores_Azure_SQL_Database
   #   jobs: 
