@@ -21,26 +21,26 @@ steps:
         ls devops/cicd/arm-json/storage_accounts/
         pwd
 
-# stages:  
-  # - stage: Storage_Hardcoded
-  #   jobs: 
-  #     - job: DeployStorageAccount
-  #       pool:
-  #         vmImage: ubuntu-latest
-  #       steps:
-  #       - task: AzureResourceManagerTemplateDeployment@3
-  #         inputs:
-  #           deploymentScope: 'Resource Group'
-  #           azureResourceManagerConnection: 'df-cicd-service-connection'
-  #           subscriptionId: '0b35426c-85f3-45e8-9f96-577a13b738d5'
-  #           action: 'Create Or Update Resource Group'
-  #           resourceGroupName: 'df-cicd-4'
-  #           location: 'EAST US'
-  #           templateLocation: 'Linked artifact'
-  #           csmFile: 'devops/cicd/arm-json/storage_accounts/storage_accounts.json'
-  #           overrideParameters: '-project df -environment cicd  -storageAccountName dfstoragecicd -bronzeLayer bronze-cicd -silverLayer silver-cicd -goldLayer gold-cicd'
-  #           deploymentMode: 'Incremental'
-  #           deploymentName: 'storage_accounts'
+stages:  
+  - stage: Storage_Hardcoded
+    jobs: 
+      - job: DeployStorageAccount
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: 'df-cicd-service-connection'
+            subscriptionId: '0b35426c-85f3-45e8-9f96-577a13b738d5'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: 'df-cicd-4'
+            location: 'EAST US'
+            templateLocation: 'Linked artifact'
+            csmFile: 'devops/cicd/arm-json/storage_accounts/storage_accounts.json'
+            overrideParameters: '-project df -environment cicd  -storageAccountName dfstoragecicd -bronzeLayer bronze-cicd -silverLayer silver-cicd -goldLayer gold-cicd'
+            deploymentMode: 'Incremental'
+            deploymentName: 'storage_accounts'
 
   # - stage: Storage_Dynamic
   #   jobs: 
