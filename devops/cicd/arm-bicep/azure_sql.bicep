@@ -23,10 +23,10 @@ param vaultResourceGroupName string
 param vaultSubscription string = subscription().subscriptionId
 
 
-resource secretMetadata 'Microsoft.KeyVault/vaults@2019-09-01' existing = {
-  name: vaultName
-  //scope: resourceGroup(vaultSubscription, vaultResourceGroupName )
-}
+// resource secretMetadata 'Microsoft.KeyVault/vaults@2019-09-01' existing = {
+//   name: vaultName
+//   scope: resourceGroup(vaultSubscription, vaultResourceGroupName )
+// }
 
 module dynamicSecret './azure_sql_module.bicep' = {
   name: 'Azure_SQL_Module'
@@ -34,7 +34,9 @@ module dynamicSecret './azure_sql_module.bicep' = {
     location: location
     sqlServerName: sqlServerName
     databaseName: databaseName
-    adminLoginUser: secretMetadata.getSecret(adminLoginUsersecretName)
-    adminPassword: secretMetadata.getSecret(adminPasswordsecretName)
+    //adminLoginUser: secretMetadata.getSecret(adminLoginUsersecretName)
+    //adminPassword: secretMetadata.getSecret(adminPasswordsecretName)
+    adminLoginUser: adminLoginUsersecretName
+    adminPassword: adminPasswordsecretName
   }
 }
