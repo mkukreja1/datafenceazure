@@ -10,16 +10,16 @@ trigger:
 variables:
   - group: 'df-cicd'
 
-pool:
-  vmImage: ubuntu-latest
-steps:
-  - task: Bash@3
-    inputs:
-      targetType: 'inline'
-      script: |
-        ls
-        ls devops/cicd/arm-json/storage_accounts/
-        pwd
+# pool:
+#   vmImage: ubuntu-latest
+# steps:
+#   - task: Bash@3
+#     inputs:
+#       targetType: 'inline'
+#       script: |
+#         ls
+#         ls devops/cicd/arm-json/storage_accounts/
+#         pwd
 
 stages:  
   - stage: Storage_Hardcoded
