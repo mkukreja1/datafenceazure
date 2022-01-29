@@ -10,6 +10,8 @@ trigger:
 variables:
   - group: 'df-cicd-code'
 
+# Stages of Deployment
+
 stages:
           
   - stage: Lakehouse_Linked_services
