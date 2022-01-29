@@ -10,7 +10,7 @@ trigger:
 variables:
   - group: 'df-cicd'
 
-# ARM Deployment Stages
+#ARM Deployment Stages
 
 stages:  
 
